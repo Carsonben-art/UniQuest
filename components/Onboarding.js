@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, FlatList, Animated} from 'react-native';
 import OnboardingItem from './OnboardingItem';
 
 import Paginator from './Paginator';
+import NextButton from './NextButton';
 
 import slides from '../slides'
 export default Onboarding = () =>{
@@ -40,6 +41,7 @@ const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
                     />
             </View>
             <Paginator data={slides} scrollX={scrollX}/>
+            <NextButton percentage={(currentIndex + 1) * (100 / slides.length)}/>
         </View>
     );
 };
