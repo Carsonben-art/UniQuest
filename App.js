@@ -1,22 +1,76 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {  View, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState, useEffect } from 'react';
+
+import HomeScreen from './components/HomeScreen';
 
 import Onboarding from './components/Onboarding';
+import HomePage from './screens/HomePage';
+
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+
+
+
+
+
+const Loading = () =>{
+  return(
+  <View>
+    <ActivityIndicator size="large" />
+  </View>
+
+  )
+}
+const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      {/* <Text>Best University search application!</Text> */}
-      <Onboarding />
-      <StatusBar style="auto" />
-    </View>
-  );
+
+const [loading, setLoading] = useState(true);
+const [viewedOnboarding, setViewedOnboarding] = useState(false);
+
+const checkOnboarding = async () =>{
+  try {
+    const value = await AsyncStorage.getItem('@viewedOnboarding');
+
+    if (value !== null){
+      setViewedOnboarding(true);
+    }
+  } catch (err)  {
+    console.log('Error @checkingOnboarding: ', err)
+  }finally{
+    setLoading(false)
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+useEffect(() =>{
+  checkOnboarding();
+},[])
+
+  return (
+
+
+    <NavigationContainer>
+      <Stack.Navigator>
+        {loading ? (
+          <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
+        ) : (
+          <>
+            <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+          </>
+        )}
+            <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
+
+      </Stack.Navigator>
+      <StatusBar style="auto" />
+    </NavigationContainer>
+
+   
+
+
+  );
+}

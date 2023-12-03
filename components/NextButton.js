@@ -1,71 +1,66 @@
-import { View, Animated, StyleSheet, TouchableOpacity} from 'react-native'
-import React ,{useState, useRef, useEffect}from 'react';
-import Svg,{ G, Circle } from 'react-native-svg';
-import {AntDesign} from '@expo/vector-icons'
+import React, { useEffect, useState } from 'react';
+import { View,StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import Svg, { Circle, G } from 'react-native-svg';
+import { AntDesign } from '@expo/vector-icons'; // or appropriate icon library
 
-export default  NextButton = ({ percentage }) => {
 
-const size = 128;
-const strokeWidth = 2;
-const center = size/2;
-const radius = size/ 2 - strokeWidth / 2;
-const circumference = 2* Math.PI * radius;
+const NextButton = ({ percentage, scrollTo }) => {
+  const size = 128;
+  const strokeWidth = 2;
+  const center = size / 2;
+  const radius = size / 2 - strokeWidth / 2;
+  const circumference = 2 * Math.PI * radius;
 
-const progressAnimation = useRef(new Animated.Value(0)).current;
-
-const progressRef = useRef(null);
-
-const animation = (toValue) => {
-  return Animated.Animated.timing(progressAnimation, {
-    toValue,
-    duration: 250,
-    useNativeDriver: true
-  }).start();
+  const [strokeDashoffset, setStrokeDashoffset] = useState(new Animated.Value(circumference));
 
   useEffect(() => {
-    animation(percentage)
-  },[percentage]);
+    const animation = Animated.timing(strokeDashoffset, {
+      toValue: circumference - (circumference * percentage) / 100,
+      duration: 250,
+      useNativeDriver: true,
+    });
 
-  useEffect(()=>{
-    progressAnimation.addListener((value) => {
-      const strokeDashoffset = circumference - (circumference * value.value) / 100;
-      
-      if(progressRef?.current){
-        progressRef.current.setNativeProps({
-          strokeDashoffset
-        })
-      }
-      
-    },[percentage]);
-  })
+    animation.start();
 
-}
-
+    return () => {
+      animation.stop();
+    };
+  }, [percentage, strokeDashoffset, circumference]);
 
   return (
     <View style={styles.container}>
-        <Svg width={size} height={size}>
-          <G rotation="-90" origin={center}>
-              <Circle stroke="#E6E7E8" cx={center} cy={center} r={radius} strokeWidth={strokeWidth} fill="none"/>
-              <Circle
-                  ref={progressRef}
-                  stroke='#F4338F'
-                  fill="none"
-                  cx={center}
-                  cy={center}
-                  r={radius}
-                  strokeWidth={strokeWidth}
-                  strokeDasharray={circumference}
-                  // strokeDashoffset={percentage}
-                   />
-          </G>
-        </Svg>
-          <TouchableOpacity style={styles.button} activeOpacity={0.6}>
-              <AntDesign name="arrowright" size={32} color="#ffffff" />
-          </TouchableOpacity>
+      <Svg width={size} height={size}>
+        <G rotation="-90" origin={`${center},${center}`}>
+          <Circle
+            stroke="#E6E7E8"
+            cx={center}
+            cy={center}
+            r={radius}
+            strokeWidth={strokeWidth}
+            fill="none"
+          />
+          <Circle
+            stroke="#F4338F"
+            fill="none"
+            cx={center}
+            cy={center}
+            r={radius}
+            strokeWidth={strokeWidth}
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+          />
+        </G>
+      </Svg>
+      <TouchableOpacity onPress={scrollTo} style={styles.button} activeOpacity={0.6}>
+        <AntDesign name="arrowright" size={32} color="#ffffff" />
+      </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
+
+export default NextButton;
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
