@@ -31,7 +31,7 @@ const TopCourses = () => {
   ];
   return (
     <View style={styles.container}>
-        <Text style={{marginLeft: 10, fontSize: 25, fontWeight: '800', color: '#493d8a'}}>Top Courses</Text>
+        {/* <Text style={{marginLeft: 10, fontSize: 25, fontWeight: '800', color: '#493d8a'}}>Top Courses</Text> */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {courses.map((item, index) => (
           <View key={item.id} style={{margin: 10}}>
