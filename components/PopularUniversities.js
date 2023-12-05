@@ -30,7 +30,7 @@ const PopularUniversities = () => {
         </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data.map((item, index) => (
+        {data.map((item, index) => ( 
           <Pressable style={{ margin: 10 }} key={index}>
             <ImageBackground
               imageStyle={{ borderRadius: 6 }}

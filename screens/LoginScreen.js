@@ -13,16 +13,14 @@ import Font from "../constants/Font";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-
 import AppTextInput from "../components/AppTextInput";
 
 const LoginScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    const goToHomePage = () => {
-      navigation.navigate('HomePage');
-    //   navigation.navigate("Login");
-    };
+  const goToHomePage = () => {
+    navigation.navigate("CountryFilter");
+  };
   return (
     <SafeAreaView>
       <View
@@ -40,7 +38,7 @@ const LoginScreen = () => {
               fontSize: 30,
               color: Colors.primary,
               fontWeight: "800",
-            //   fontFamily: Font["poppins-bold"],
+              //   fontFamily: Font["poppins-bold"],
               marginVertical: 40,
             }}
           >
@@ -48,7 +46,7 @@ const LoginScreen = () => {
           </Text>
           <Text
             style={{
-            //   fontFamily: Font["poppins-semiBold"],
+              //   fontFamily: Font["poppins-semiBold"],
               fontSize: 20,
               maxWidth: "60%",
               textAlign: "center",
@@ -63,7 +61,7 @@ const LoginScreen = () => {
           }}
         >
           <AppTextInput placeholder="Email" />
-          <AppTextInput placeholder="Password" />
+          <AppTextInput secureTextEntry placeholder="Password" />
         </View>
 
         <View>
@@ -93,7 +91,7 @@ const LoginScreen = () => {
             shadowOpacity: 0.3,
             shadowRadius: 10,
           }}
-  onPress={goToHomePage}
+          onPress={goToHomePage}
         >
           <Text
             style={{
