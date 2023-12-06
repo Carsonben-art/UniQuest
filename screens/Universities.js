@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import Colors from "../constants/Colors";
@@ -7,8 +7,14 @@ import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 import { Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Universities = () => {
+  const navigation = useNavigation();
+
+  const listUniversities = () => {
+    navigation.navigate("UniversityListing");
+  };
   return (
     <View style={{ backgroundColor: Colors.primary }}>
       <View
@@ -47,8 +53,13 @@ const Universities = () => {
             marginTop: 15,
             backgroundColor: Colors.gray,
           }}
+          onPress={listUniversities}
         >
-          <Text style={{fontSize: 20}}>Universities</Text>
+          <Image
+            source={require("../assets/images/university.jpg")}
+            style={{ width: 40, height: 40, borderRadius: 10 }}
+          />
+          <Text style={{ fontSize: 20 }}>Universities</Text>
           <AntDesign name="rightcircleo" size={30} color="black" />
         </Pressable>
         <Pressable
@@ -65,7 +76,11 @@ const Universities = () => {
             // backgroundColor: Colors.gray,
           }}
         >
-          <Text style={{fontSize: 20}}>Agencies</Text>
+          <Image
+            source={require("../assets/images/agency.png")}
+            style={{ width: 40, height: 40, borderRadius: 10 }}
+          />
+          <Text style={{ fontSize: 20 }}>Agencies</Text>
           <AntDesign name="rightcircleo" size={30} color="black" />
         </Pressable>
         <Pressable
@@ -82,7 +97,11 @@ const Universities = () => {
             backgroundColor: Colors.gray,
           }}
         >
-          <Text style={{fontSize: 20}}>Embassy</Text>
+          <Image
+            source={require("../assets/images/embassy.png")}
+            style={{ width: 40, height: 40, borderRadius: 10 }}
+          />
+          <Text style={{ fontSize: 20 }}>Embassy</Text>
           <AntDesign name="rightcircleo" size={30} color="black" />
         </Pressable>
         <Pressable
@@ -98,7 +117,11 @@ const Universities = () => {
             marginTop: 15,
           }}
         >
-          <Text style={{fontSize: 20}}>Mentors</Text>
+          <Image
+        source={require("../assets/images/mentor.png")}
+            style={{ width: 40, height: 40, borderRadius: 10 }}
+          />
+          <Text style={{ fontSize: 20 }}>Mentors</Text>
           <AntDesign name="rightcircleo" size={30} color="black" />
         </Pressable>
       </View>

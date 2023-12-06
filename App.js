@@ -9,6 +9,7 @@ import HomePage from './screens/HomePage';
 import LoginScreen from './screens/LoginScreen';
 import CountryFilter from './screens/CountryFilter';
 import Universities from './screens/Universities';
+import UniversityListing from './screens/UniversityListing';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -69,6 +70,7 @@ useEffect(() =>{
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CountryFilter" component={CountryFilter} options={{ headerShown: false }} />
             <Stack.Screen name="Universities" component={Universities} options={{ headerShown: false }} />
+            <Stack.Screen name="UniversityListing" component={UniversityListing} options={{ headerShown: false }} />
 
       </Stack.Navigator>
       <StatusBar style="auto" />

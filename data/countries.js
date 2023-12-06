@@ -89,4 +89,52 @@ export default [
       },
     ],
   },
+  {
+    id: "",
+    Continent: "Europe",
+    countries: [
+      {
+        id: "0",
+        name: "United Kingdom",
+        code: "Uk",
+        unicode: "\uD83C\uDDEC\uD83C\uDDE7",
+      },
+      {
+        id: "1",
+        name: "France",
+        code: "FR",
+        unicode: "\uD83C\uDDEB\uD83C\uDDF7",
+      },
+      {
+        id: "2",
+        name: "Germany",
+        code: "DE",
+        unicode: "\uD83C\uDDE9\uD83C\uDDEA",
+      },
+      {
+        id: "3",
+        name: "Spain",
+        code: "ES",
+        unicode: "\uD83C\uDDEA\uD83C\uDDF8",
+      },
+      {
+        id: "4",
+        name: "Italy",
+        code: "IT",
+        unicode: "\uD83C\uDDEE\uD83C\uDDF9",
+      },
+      {
+        id: "5",
+        name: "Netherlands",
+        code: "NL",
+        unicode: "\uD83C\uDDF3\uD83C\uDDF1",
+      },
+      {
+        id: "6",
+        name: "Switzerland",
+        code: "CH",
+        unicode: "\uD83C\uDDE8\uD83C\uDDED",
+      },
+    ],
+  },
 ];

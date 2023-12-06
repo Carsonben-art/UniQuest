@@ -23,7 +23,7 @@ const PopularUniversities = () => {
             color: "#493d8a",
           }}
         >
-          Popular Universities
+          Top Offers
         </Text>
         <TouchableOpacity>
           <AntDesign name="menufold" size={34} color="#493d8a" />
